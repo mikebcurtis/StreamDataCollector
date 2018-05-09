@@ -47,7 +47,9 @@ namespace TwitchContactData
             {
                 updatedContacts = MergeContacts(new List<TwitchContact>(), TwitchAPIAccessor.GetLiveChannelData(10, optionalGameIds));
             }
-            
+
+            updatedContacts = TwitchAPIAccessor.GetDisplayNames(updatedContacts);
+
             using (StreamWriter writer = new StreamWriter(args[0], false)) // false indicates overwrite instead of append
             {
                 CsvWriter csvWriter = new CsvWriter(writer);
